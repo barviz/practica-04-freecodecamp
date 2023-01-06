@@ -1,0 +1,76 @@
+<!--
+
+Usa una escala predefinida para colocar elementos
+
+Con las escalas configuradas, es tiempo de trazar el diagrama de dispersión nuevamente. Las escalas son como funciones procesadoras que transforman los datos iniciales de x e y a valores que encajan y se renderizan correctamente en el lienzo SVG. Mantienen los datos dentro del área de trazado de la pantalla.
+
+Establece los valores de los atributos de coordenada para una forma SVG con la función escaladora. Esto incluye los atributos x e y para rect o elementos text, o cx y cy para circles. He aquí un ejemplo:
+
+shape
+  .attr("x", (d) => xScale(d[0]))
+Las escalas establecen atributos de coordenada de las formas para colocar los puntos de datos en el lienzo SVG. No necesitas aplicar escalas cuando muestras el valor del dato real, por ejemplo, en el método text() para una descripción o una etiqueta.
+
+Usa xScale e yScale para posicionar ambas formas circle y text en el lienzo SVG. Para los circles, aplica las escalas para establecer los atributos cx y cy. También, dales un radio de 5 unidades.
+
+Para los elementos text, aplica las escalas para establecer los atributos x e y. Las etiquetas deben ser desplazadas a la derecha de los puntos. Para ello, agrega 10 unidades al valor de datos x antes de pasarlo a xScale.
+
+-->
+
+<body>
+  <script>
+    const dataset = [
+                  [ 34,     78 ],
+                  [ 109,   280 ],
+                  [ 310,   120 ],
+                  [ 79,   411 ],
+                  [ 420,   220 ],
+                  [ 233,   145 ],
+                  [ 333,   96 ],
+                  [ 222,    333 ],
+                  [ 78,    320 ],
+                  [ 21,   123 ]
+                ];
+
+    const w = 500;
+    const h = 500;
+    const padding = 60;
+
+    const xScale = d3.scaleLinear()
+                     .domain([0, d3.max(dataset, (d) => d[0])])
+                     .range([padding, w - padding]);
+
+    const yScale = d3.scaleLinear()
+                     .domain([0, d3.max(dataset, (d) => d[1])])
+                     .range([h - padding, padding]);
+
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+
+    svg.selectAll("circle")
+       .data(dataset)
+       .enter()
+       .append("circle")
+       // Agrega tu código debajo de esta línea
+
+      .attr("cx", (point) => xScale(point[0]))
+      .attr("cy", (point) => yScale(point[1]))
+      .attr("r", 5);
+
+       // Agrega tu código encima de esta línea
+
+    svg.selectAll("text")
+       .data(dataset)
+       .enter()
+       .append("text")
+       .text((d) =>  (d[0] + ", "
+ + d[1]))
+       // Agrega tu código debajo de esta línea
+
+      .attr("x", (point) => xScale(point[0] + 10))
+      .attr("y", (point) => yScale(point[1]));
+
+       // Agrega tu código encima de esta línea
+  </script>
+</body>

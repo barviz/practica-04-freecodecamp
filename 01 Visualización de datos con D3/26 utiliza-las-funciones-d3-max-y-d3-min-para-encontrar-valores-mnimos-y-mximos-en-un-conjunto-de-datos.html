@@ -1,0 +1,37 @@
+<!--
+
+Utiliza las funciones d3.max y d3.min para encontrar valores mínimos y máximos en un conjunto de datos
+
+Los métodos D3 domain() y range() establecen esa información para tu escala basada en los datos. Hay algunos métodos para hacerlo más fácil.
+
+A menudo cuando estableces el dominio, querrás utilizar los valores mínimo y máximo dentro del conjunto de datos. Intentar buscar estos valores manualmente, especialmente en un conjunto de datos grande, puede causar errores.
+
+D3 tiene dos métodos: min() y max() para devolver esta información. He aquí un ejemplo:
+
+const exampleData = [34, 234, 73, 90, 6, 52];
+d3.min(exampleData)
+d3.max(exampleData)
+Un conjunto de datos podría tener arreglos anidados, como lo estaban el par de coordenada [x, y] en el ejemplo del diagrama de dispersión. En ese caso, necesitas decirle a D3 cómo calcular el máximo y el mínimo. Afortunadamente, ambos métodos min() y max() toman una función callback. En este ejemplo, el argumento de la función callback d es para el arreglo interno actual. El callback necesita retornar el elemento desde el arreglo interno (el valor de x o de y) sobre el cual quieres computar el máximo o el mínimo. Aquí hay un ejemplo de cómo encontrar los valores mínimo y máximo con un arreglo de arreglos:
+
+const locationData = [[1, 7],[6, 3],[8, 3]];
+const minX = d3.min(locationData, (d) => d[0]);
+minX tendría el valor 1.
+
+El arreglo positionData contiene sub-arreglos de las coordenadas x, y, y z. Utiliza un método D3 para hallar el valor máximo de la coordenada z (el tercer valor) de los arreglos y guárdalo en la variable output.
+
+-->
+
+<body>
+  <script>
+    const positionData = [[1, 7, -4],[6, 3, 8],[2, 9, 3]]
+    // Agrega tu código debajo de esta línea
+
+    const output = d3.max(positionData, (item) => item[2]); // Cambia esta línea
+
+    // Agrega tu código encima de esta línea
+
+    d3.select("body")
+      .append("h2")
+      .text(output)
+  </script>
+</body>

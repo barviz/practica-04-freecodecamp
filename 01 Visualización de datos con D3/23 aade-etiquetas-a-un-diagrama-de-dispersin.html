@@ -1,0 +1,61 @@
+<!--
+
+Añade etiquetas a un diagrama de dispersión
+
+Puedes agregar texto para crear etiquetas para los puntos en un diagrama de dispersión.
+
+El objetivo es mostrar los valores separados por coma del primer (x) y segundo (y) campo de cada elemento en dataset.
+
+Los nodos text necesitan atributos x e y para posicionarlo en el lienzo SVG. En este desafío, el valor y (que determina la altura) puede usar el mismo valor que el circle usa para su atributo cy. El valor x puede ser ligeramente mayor que el valor cx del circle para que la etiqueta sea visible. Esto empujará la etiqueta a la derecha del punto trazado.
+
+Etiqueta cada punto en el diagrama de dispersión usando los elementos text. El texto de la etiqueta debe ser los valores separados por una coma y un espacio. Por ejemplo, la etiqueta para el primer punto es 34, 78. Establece el atributo x para que sea 5 unidades mayor que el valor que utilizaste para el atributo cx en el circle. Establece el atributo y de la misma manera que se usa para el valor cy en el circle.
+
+-->
+
+<body>
+  <script>
+    const dataset = [
+                  [ 34,    78 ],
+                  [ 109,   280 ],
+                  [ 310,   120 ],
+                  [ 79,    411 ],
+                  [ 420,   220 ],
+                  [ 233,   145 ],
+                  [ 333,   96 ],
+                  [ 222,   333 ],
+                  [ 78,    320 ],
+                  [ 21,    123 ]
+                ];
+
+
+    const w = 500;
+    const h = 500;
+
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+
+    svg.selectAll("circle")
+       .data(dataset)
+       .enter()
+       .append("circle")
+       .attr("cx", (d, i) => d[0])
+       .attr("cy", (d, i) => h - d[1])
+       .attr("r", 5);
+
+    svg.selectAll("text")
+       .data(dataset)
+       .enter()
+       .append("text")
+       // Agrega tu código debajo de esta línea
+
+        .text((item) => {
+          return item[0] + ", " + item[1]
+        })
+        .attr("x", (d, i) => d[0] + 5)
+        .attr("y", (d, i) => h - d[1])
+
+       // Agrega tu código encima de esta línea
+  </script>
+</body>

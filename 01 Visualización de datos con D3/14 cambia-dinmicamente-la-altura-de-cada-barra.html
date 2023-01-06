@@ -1,0 +1,45 @@
+<!--
+
+Cambia dinámicamente la altura de cada barra
+
+La altura de cada barra puede ser asignada al valor de cada elemento en el arreglo, similar a como el valor de x fue asignado dinámicamente.
+
+selection.attr("property", (d, i) => {
+
+})
+Aquí d debe ser el valor del dato asignado, y i debe ser el índice del dato en el arreglo.
+
+Cambiar la función callback para el atributo height para devolver el valor multiplicado 3 veces.
+
+Nota: Recuerda que multiplicar todos los datos por la misma constante, escala el componente (similar a hacerle zoom). Ayuda a ver las diferencias entre los valores de las barras en este ejemplo.
+
+-->
+
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+    const w = 500;
+    const h = 100;
+
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+
+    svg.selectAll("rect")
+       .data(dataset)
+       .enter()
+       .append("rect")
+       .attr("x", (d, i) => i * 30)
+       .attr("y", 0)
+       .attr("width", 25)
+       .attr("height", (d, i) => {
+         // Agrega tu código debajo de esta línea
+
+        return d * 3;
+
+         // Agrega tu código encima de esta línea
+       });
+  </script>
+</body>

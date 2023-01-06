@@ -1,0 +1,48 @@
+<!--
+
+Invierte elementos SVG
+
+Habrás notado que el gráfico de barras parecía estar al revés, o invertido. Esto se debe a cómo SVG utiliza las coordenadas (x, y).
+
+En SVG, el punto de origen de coordenadas está en la esquina superior izquierda. Una coordenada x de 0 coloca la forma en el borde izquierdo del área SVG. Una coordenada y de 0 coloca la forma en el borde superior del área SVG. Valores más altos de x empujan el rectángulo a la derecha. Valores más altos de y empujan el rectángulo hacia abajo.
+
+Para poner las barras hacia arriba, necesitas cambiar la forma en la que la coordenada y es calculada. Necesita tener en cuenta tanto la altura de la barra como el alto total del área SVG.
+
+La altura del área SVG es 100. Si tienes un punto de dato de 0 en el conjunto, querrías que la barra comience en la parte inferior del área SVG (no en la superior). Para hacer esto, la coordenada y necesita un valor de 100. Si el punto de dato fuese 1, comenzarías con una coordenada y de 100 para colocar la barra en la parte inferior. Aparte, debes tener en consideración la altura de la barra de 1, así que la coordenada final de y sería 99.
+
+La coordenada y que es y = heightOfSVG - heightOfBar (y = alturaDeSVG - alturaDeBarra) colocaría las barras hacia arriba.
+
+Cambia la función callback para el atributo y para colocar las barras hacia arriba. Recuerda que la height (altura) de la barra es 3 veces el valor del dato d.
+
+Nota: En general, la relación es y = h - m * d, donde m es la constante que escala los puntos de datos.
+
+-->
+
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+    const w = 500;
+    const h = 100;
+
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+
+    svg.selectAll("rect")
+       .data(dataset)
+       .enter()
+       .append("rect")
+       .attr("x", (d, i) => i * 30)
+       .attr("y", (d, i) => {
+         // Agrega tu código debajo de esta línea
+
+         return h - (3 * d);
+
+         // Agrega tu código encima de esta línea
+       })
+       .attr("width", 25)
+       .attr("height", (d, i) => 3 * d);
+  </script>
+</body>

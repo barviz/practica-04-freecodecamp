@@ -1,0 +1,52 @@
+<!--
+
+Agrega etiquetas a elementos D3
+
+D3 te permite etiquetar un elemento gráfico, como una barra, usando el elemento SVG text.
+
+Como el elemento rect, un elemento text necesita tener atributos x e y, para colocarlo en el lienzo SVG. También necesita acceso a los datos para mostrar los valores.
+
+D3 te da un nivel de control alto sobre cómo etiquetas tus barras.
+
+El código en el editor ya vincula los datos a cada nuevo elemento text. Primero, añade nodos text a el svg. Luego, agrega atributos para las coordenadas x e y. Deben ser calculadas de la misma forma que las de rect, excepto el valor y para el text. Este debe hacer que la etiqueta se ubique 3 unidades más alto que la barra. Finalmente, usa el método de D3 text() para establecer la etiqueta igual al valor del punto de datos.
+
+Nota: Para que la etiqueta se ubique arriba de la barra, decide si el valor y para el text debe ser 3 más o 3 menos que el valor y de la barra.
+
+-->
+
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+    const w = 500;
+    const h = 100;
+
+    const svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+
+    svg.selectAll("rect")
+       .data(dataset)
+       .enter()
+       .append("rect")
+       .attr("x", (d, i) => i * 30)
+       .attr("y", (d, i) => h - 3 * d)
+       .attr("width", 25)
+       .attr("height", (d, i) => 3 * d)
+       .attr("fill", "navy");
+
+    svg.selectAll("text")
+       .data(dataset)
+       .enter()
+       // Agrega tu código debajo de esta línea
+
+      .append("text")
+      .attr("x", (d, i) => i * 30)
+      .attr("y", (d, i) => (h - 3*d) - 3)
+      .text((d) => d);
+
+
+       // Agrega tu código encima de esta línea
+  </script>
+<body>

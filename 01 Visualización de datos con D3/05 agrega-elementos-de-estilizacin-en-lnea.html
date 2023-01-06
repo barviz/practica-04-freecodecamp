@@ -1,0 +1,29 @@
+<!--
+
+Agrega elementos de estilización en línea
+
+D3 te permite añadir estilos CSS en línea sobre elementos dinámicos con el método style().
+
+El método style() toma un par llave-valor separado por coma como argumento. Aquí hay un ejemplo para establecer el color de texto de la selección a azul:
+
+selection.style("color","blue");
+Agrega el método style() al código en el editor para hacer que todo el texto mostrado tenga como font-family la fuente verdana.
+
+-->
+
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+    d3.select("body").selectAll("h2")
+      .data(dataset)
+      .enter()
+      .append("h2")
+      .text((d) => (d + " USD"))
+      // Agrega tu código debajo de esta línea
+
+      .style("font-family","verdana");
+
+      // Agrega tu código encima de esta línea
+  </script>
+</body>

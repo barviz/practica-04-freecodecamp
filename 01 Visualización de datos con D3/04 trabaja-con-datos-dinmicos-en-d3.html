@@ -1,0 +1,34 @@
+<!--
+
+Trabaja con datos dinámicos en D3
+
+Los dos últimos desafíos cubren las básicas de mostrar datos dinámicamente con D3 utilizando los métodos data() y enter(). Estos métodos toman un conjunto de datos y, junto con el método append(), crean un nuevo elemento DOM para cada entrada en el conjunto de datos.
+
+En el desafío anterior, haz creado un nuevo elemento h2 para cada artículo en el arreglo dataset, pero todos contenían el mismo texto, New Title. Esto es porque no has usado los datos que están vinculados a cada uno de los elementos h2.
+
+El método text() de D3 puede tomar una cadena o una función callback como argumento:
+
+selection.text((d) => d)
+En el ejemplo superior, el parámetro d hace referencia a una sola entrada en el conjunto de datos a la cual la selección está vinculada.
+
+Utilizando el ejemplo actual como contexto, el primer elemento h2 está vinculado a 12, el segundo elemento h2 está vinculado a 31, el tercer elemento h2 está vinculado a 22, y así sucesivamente.
+
+Cambia el método text() para que cada elemento h2 muestre el valor correspondiente del arreglo dataset con un solo espacio y la cadena USD. Por ejemplo, el primer título debe ser 12 USD.
+
+-->
+
+<body>
+  <script>
+    const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+    d3.select("body").selectAll("h2")
+      .data(dataset)
+      .enter()
+      .append("h2")
+      // Agrega tu código debajo de esta línea
+
+      .text((d) => d + " USD");
+
+      // Agrega tu código encima de esta línea
+  </script>
+</body>

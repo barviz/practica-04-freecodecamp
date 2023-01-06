@@ -1,0 +1,28 @@
+<!--
+
+Selecciona un grupo de elementos con D3
+
+D3 también tiene el método selectAll() para seleccionar un grupo de elementos. Devuelve un arreglo de nodos HTML con todos los elementos en el documento que coinciden con el texto ingresado. Aquí hay un ejemplo para seleccionar todas las etiquetas de anclaje en un documento:
+
+const anchors = d3.selectAll("a");
+Al igual que el método select(), selectAll() soporta el encadenamiento de métodos, y puedes usarlo con otros métodos.
+
+Selecciona todas las etiquetas li en el documento, y cambia su texto a la cadena list item concatenando el método .text().
+
+-->
+
+<body>
+  <ul>
+    <li>Example</li>
+    <li>Example</li>
+    <li>Example</li>
+  </ul>
+  <script>
+    // Agrega tu código debajo de esta línea
+
+d3.selectAll("li")
+  .text("list item");
+
+    // Agrega tu código encima de esta línea
+  </script>
+</body>
